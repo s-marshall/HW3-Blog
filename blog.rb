@@ -62,6 +62,11 @@ end
 
 get '/blog/:permalink' do |permalink|
   perma_post = Post.first(:id => permalink)
-  render_blogs(perma_post.subject, perma_post.content, '')
+  if perma_post == nil
+    render_blogs('', '', 'That post does not exist!!')
+  else
+    haml :post, :locals => {:subject => perma_post.subject, :content => perma_post.content}
+    #render_blogs(perma_post.subject, perma_post.content, '')
+  end
 end
 

@@ -27,9 +27,9 @@
     %div.content Blog Listing
     %hr
     - locals[:blog_listing].each do |blog|
-      .blog-subject
+      .post-heading
         #{blog.subject}
-      %pre.blog-content
+      %pre.post-content
         :preserve
           #{blog.content}
 
