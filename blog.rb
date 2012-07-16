@@ -20,7 +20,6 @@ class Post
   private
     def set_permalink
       self.permalink = id
-      #title.gsub(%Q{ }, %Q{-})
     end
 end
 
