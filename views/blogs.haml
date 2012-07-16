@@ -1,0 +1,35 @@
+!!! 5
+%html
+  %head
+    %title Bloggie
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/styles.css"}
+
+  %body
+    %h1 Bloggie
+
+    %form{:method => 'post', :action => '/blog/newpost'}
+      %label
+        %div Subject
+        %input{:type => 'text', :name => 'subject', :value => %Q{#{locals[:subject]}}}
+
+      %label
+        %div.content Content
+        =find_and_preserve do
+          %textarea{:name => 'content'}
+            = %Q{#{locals[:content]}}
+
+      .error
+        = %Q{#{locals[:error]}}
+      %br
+      %input{:type => 'submit'}
+
+    %hr
+    %div.content Blog Listing
+    %hr
+    - locals[:blog_listing].each do |blog|
+      .blog-subject
+        #{blog.subject}
+      %pre.blog-content
+        :preserve
+          #{blog.content}
+
